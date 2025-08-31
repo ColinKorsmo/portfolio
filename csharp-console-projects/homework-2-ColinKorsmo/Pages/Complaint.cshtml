@@ -1,0 +1,68 @@
+@page
+@model homework_2_ColinKorsmo.Pages.ComplaintModel
+@{
+    ViewData["Title"] = "Complaint Form";
+}
+
+<h3>ThoughtTronix Complaint Form</h3>
+<p>We are sorry to hear that you have a complaint. Please file your complaint below and we will get back to you shortly.</p>
+
+<form method="post" class="needs-validation" novalidate>
+    <h5 class="mb-3">Select a product...</h5>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="SelectedProduct" value="1" id="product1" required>
+        <label class="form-check-label" for="product1">MindSync</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="SelectedProduct" value="2" id="product2">
+        <label class="form-check-label" for="product2">Seraphine</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="SelectedProduct" value="3" id="product3">
+        <label class="form-check-label" for="product3">SoulSear</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="SelectedProduct" value="4" id="product4">
+        <label class="form-check-label" for="product4">Phantom Claw</label>
+    </div>
+    
+    <!--Display an error message if one of the buttons is not selected. -->
+    <span asp-validation-for="SelectedProduct" class="text-danger"></span>
+
+
+    <hr class="my-4">
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" required>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" required>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Message" class="form-label"></label>
+        <textarea asp-for="Message" class="form-control" rows="5" required></textarea>
+        <span asp-validation-for="Message" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    @if (Model.IsSubmitted)
+    {
+        <p>
+            Thank you for your complaint about @Model.ProductName - @Model.Name (@Model.Email).
+        </p>
+        <p>
+            @Model.Message
+        </p>
+    }
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
