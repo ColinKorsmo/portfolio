@@ -1,0 +1,28 @@
+@page
+@model final_project.Pages.SelectedItemsModel
+
+@{
+    ViewData["Title"] = "Selected Items";
+}
+
+<h1>Selected Items</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.SelectedItems[0].Name)</th>
+            <th>@Html.DisplayNameFor(model => model.SelectedItems[0].Price)</th>
+            <th>@Html.DisplayNameFor(model => model.SelectedItems[0].Aspect)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SelectedItems)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Aspect?.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
