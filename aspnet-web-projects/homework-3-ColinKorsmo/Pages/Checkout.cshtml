@@ -1,0 +1,142 @@
+@page
+@using homework_3_ColinKorsmo.Models
+@model homework_3_ColinKorsmo.Pages.CheckoutModel
+@{
+    ViewData["Title"] = "ThoughtTronix Checkout Form";
+}
+
+<div class="container-fluid mt-5">
+    <h3 class="mb-3 text-center">ThoughtTronix Checkout</h3>
+    <p class="text-center fs-5 text-secondary">Congratulations, you are about to unlock the full potential of your mind with MindSync. Rest easy knowing MindSync will make those difficult life decisions for you. Please checkout below. Your thoughts, our business.</p>
+</div>
+
+<div class="row">
+    <div class="col-8">
+        <form method="post" asp-page="Confirmation">
+            <h5>Billing Address</h5>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label asp-for="OrderObject.FirstName">First Name</label>
+                    <input asp-for="OrderObject.FirstName" class="form-control" placeholder="First Name">
+                    <span asp-validation-for="OrderObject.FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <label asp-for="OrderObject.LastName">Last Name</label>
+                    <input asp-for="OrderObject.LastName" class="form-control" placeholder="Last Name">
+                    <span asp-validation-for="OrderObject.LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label asp-for="OrderObject.Email">Email Address</label>
+                    <input asp-for="OrderObject.Email" class="form-control" placeholder="Email Address">
+                    <span asp-validation-for="OrderObject.Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label asp-for="OrderObject.Address">Address</label>
+                    <input asp-for="OrderObject.Address" class="form-control" placeholder="Billing Address">
+                    <span asp-validation-for="OrderObject.Address" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label asp-for="OrderObject.Country">Country</label>
+                    <select asp-for="OrderObject.Country" class="form-select" asp-items="Html.GetEnumSelectList<Country>()">
+                        <option value="">Choose...</option>
+                    </select>
+                    <span asp-validation-for="OrderObject.Country" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="OrderObject.State">State</label>
+                    <select asp-for="OrderObject.State" class="form-select" asp-items="Html.GetEnumSelectList<State>()">
+                        <option value="">Choose...</option>
+                    </select>
+                    <span asp-validation-for="OrderObject.State" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label asp-for="OrderObject.Zip">Zip Code</label>
+                    <input asp-for="OrderObject.Zip" class="form-control" placeholder="Zip Code">
+                    <span asp-validation-for="OrderObject.Zip" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="OrderObject.SameShippingInfo" class="form-check-input" type="checkbox">
+                <label asp-for="OrderObject.SameShippingInfo" class="form-check-label">Shipping address is the same as my billing address</label>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="OrderObject.SaveInformation" class="form-check-input" type="checkbox">
+                <label asp-for="OrderObject.SaveInformation" class="form-check-label">Save this information for next time</label>
+            </div>
+            <h5>Payment</h5>
+            <div class="form-check mb-3">
+                <input asp-for="OrderObject.PaymentType" class="form-check-input" type="radio" value="1">
+                <label class="form-check-label">Credit Card</label>
+            </div>
+            <div class="form-check mb-3">
+                <input asp-for="OrderObject.PaymentType" class="form-check-input" type="radio" value="2">
+                <label class="form-check-label">Debit Card</label>
+            </div>
+            <div class="form-check mb-3">
+                <input asp-for="OrderObject.PaymentType" class="form-check-input" type="radio" value="3">
+                <label class="form-check-label">PayPal</label>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label asp-for="OrderObject.NameOnCard">Name on Card</label>
+                    <input asp-for="OrderObject.NameOnCard" class="form-control" placeholder="Name on Card">
+                    <span asp-validation-for="OrderObject.NameOnCard" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label asp-for="OrderObject.CreditCardNumber">Credit Card Number</label>
+                    <input asp-for="OrderObject.CreditCardNumber" class="form-control" placeholder="Credit Card Number">
+                    <span asp-validation-for="OrderObject.CreditCardNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Checkout</button>
+        </form>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="col-4">
+        <h5>Your Cart</h5>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>MindSync Free</td>
+                    <td>$0.00</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>$5.99</td>
+                </tr>
+                <tr>
+                    <td>Taxes & Fees</td>
+                    <td>$17.99</td>
+                </tr>
+                <tr>
+                    <th>Total (USD)</th>
+                    <th><strong>$23.98</strong></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

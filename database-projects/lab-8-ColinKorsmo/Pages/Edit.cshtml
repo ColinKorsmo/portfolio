@@ -1,0 +1,46 @@
+@page
+@model EditModel
+@{
+    ViewData["Title"] = "Edit Patient";
+}
+
+<h2>Edit</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="Patient.FirstName" class="control-label"></label>
+                    <input asp-for="Patient.FirstName" class="form-control shorter-input" />
+                    <span asp-validation-for="Patient.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Patient.LastName" class="control-label"></label>
+                    <input asp-for="Patient.LastName" class="form-control shorter-input" />
+                    <span asp-validation-for="Patient.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Patient.AdmitDate" class="control-label"></label>
+                    <input asp-for="Patient.AdmitDate" class="form-control shorter-input" type="date" />
+                    <span asp-validation-for="Patient.AdmitDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Patient.SymptomDescription" class="control-label"></label>
+                    <textarea asp-for="Patient.SymptomDescription" class="form-control shorter-input"></textarea>
+                    <span asp-validation-for="Patient.SymptomDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+            <div class="mt-3">
+                <a asp-page="./Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

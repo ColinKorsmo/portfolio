@@ -1,0 +1,68 @@
+﻿@page
+@model homework_6_ColinKorsmo.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+<div class="container mt-4">
+    @foreach (var p in Model.Products)
+    {
+        double reviewAvg = p.Reviews.Any() ? p.Reviews.Average(r => r.Score) : 0;
+        int reviewCnt = p.Reviews.Count;
+
+        <div class="row mb-4">
+            <div class="col-2">
+                <img src="@p.ImageURL" class="img-fluid" alt="@p.Name" />
+            </div>
+            
+            <div class="col-10">
+                <h3>@p.Name</h3>
+
+                <p>
+                    <span>@String.Format("{0:F1}", reviewAvg) </span>
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        if (i <= Math.Floor(reviewAvg))
+                        {
+                            <i class="bi bi-star-fill" style="color: gold;"></i>
+                        }
+                        else if (i == Math.Ceiling(reviewAvg) && reviewAvg % 1 != 0)
+                        {
+                            <i class="bi bi-star-half" style="color: gold;"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-star" style="color: gold;"></i> 
+                        }
+                    }
+                    <span>@reviewCnt reviews</span>
+                </p>
+
+                <p class="fs-5">@p.Description</p>
+
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="@("#reviews" + @p.ProductID)">
+                    Show Reviews
+                </button>
+                <div class="collapse mt-2" id="@("reviews" + @p.ProductID)">
+                        <div>
+                            @foreach (var review in p.Reviews)
+                            {
+                                <div>
+                                    <!-- I changed the score to be at the top for a cleaner look -->
+                                    <strong>Score:</strong> @review.Score/5 <br />
+                                    <span>@review.ReviewText</span>
+                                    <hr />
+                                </div>
+                            }
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4" />
+    }
+</div>

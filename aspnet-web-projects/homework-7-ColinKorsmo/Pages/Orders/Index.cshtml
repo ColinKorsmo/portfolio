@@ -1,0 +1,95 @@
+@page
+@model homework_7_ColinKorsmo.Pages.Orders.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<div class="row">
+    <form class="d-flex" role="search" asp-page="./Index" method="get">
+        <div class="col-3">
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input class="form-control me-2" type="search" name="CurrentSearch" value="@Model.CurrentSearch" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @{
+                    var nameSort = "name_asc";
+                    if (Model.CurrentSort == "name_asc")
+                    {
+                        nameSort = "name_desc";
+                    }
+                }
+                <a asp-page="./Index" asp-route-CurrentSort="@nameSort" asp-route-PageNum="@Model.PageNum">@Html.DisplayNameFor(model => model.Order[0].CustomerName)</a>
+            </th>
+            <th>
+                @{
+                    var dateSort = "date_asc";
+                    if (Model.CurrentSort == "date_asc")
+                    {
+                        dateSort = "date_desc";
+                    }
+                }
+                <a asp-page="./Index" asp-route-CurrentSort="@dateSort" asp-route-PageNum="@Model.PageNum">@Html.DisplayNameFor(model => model.Order[0].OrderDate)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].ProductOrders)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Order) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @foreach (var productOrder in item.ProductOrders)
+                {
+                    @productOrder.Product.Name <br />
+                }
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.OrderID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.OrderID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.OrderID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<hr />
+@{
+    var prevDisabled = "";
+    var nextDisabled = "";
+    if (Model.PageNum <= 1)
+    {
+        prevDisabled = "disabled";
+    }
+    if (Model.PageNum >= Model.TotalPages)
+    {
+        nextDisabled = "disabled";
+    }
+}
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-CurrentSort="@Model.CurrentSort" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+        <li class="page-item @nextDisabled"><a class="page-link" asp-page="./Index" asp-route-CurrentSort="@Model.CurrentSort" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+    </ul>
+</nav>

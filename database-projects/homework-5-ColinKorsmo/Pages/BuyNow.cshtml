@@ -1,0 +1,56 @@
+@page "{id:int}"
+@model homework_5_ColinKorsmo.Pages.BuyNowModel
+@{
+    ViewData["Title"] = "Buy Now";
+    var product = Model.Product; 
+}
+
+<h1>Shopping Cart</h1>
+
+<div class="row mt-5 p-2 border border-dark rounded">
+    <div class="col-3 align-self-center">
+        <img src="@product.ImageURL" alt="@product.Name" class="img-fluid" />
+    </div>
+
+    <div class="col-6 align-self-center">
+        <p><strong>Product:</strong> @product.Name</p>
+        <p><strong>Description:</strong> @product.Description</p>
+        <hr>
+        <p class="text-secondary">Estimated Delivery: @Model.StartDeliveryDate.ToString("MM/dd/yyyy") - @Model.EndDeliveryDate.ToString("MM/dd/yyyy")</p>
+    </div>
+
+    <div class="col-3 align-self-center">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Shopping Cart Summary</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>@product.Name</td>
+                            <td class="text-end">@product.Price.ToString("C")</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping</td>
+                            <td class="text-end">@Model.Shipping.ToString("C")</td> 
+                        </tr>
+                        <tr>
+                            <td>Tax</td>
+                            <td class="text-end">@Model.Tax.ToString("C")</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="border-top">
+                            <td><strong>Total</strong></td>
+                            <td class="text-end"><strong>@Model.Total.ToString("C")</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="d-grid gap-2">
+                    <a asp-page="/Checkout" class="btn btn-primary">PLACE ORDER</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

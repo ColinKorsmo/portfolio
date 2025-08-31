@@ -1,0 +1,110 @@
+@page
+@using lab_6_ColinKorsmo.Models
+@model lab_6_ColinKorsmo.Pages.CancelModel
+@{
+    ViewData["Title"] = "ThoughtTronix Cancellation Request Form";
+}
+
+<div class="container-fluid mt-5">
+    <h4 class="mb-3">ThoughtTronix Cancellation Request Form</h4>
+    <p class="text-center fs-5 text-secondary">Congratulations, you are about to unock the full potential of your mind with MindSync. Rest easy knowing MindSync will make those difficult life decisions for you. Please checkout below. Your thoughts, our business.</p>
+    </div>
+<div class="row">
+<form method="post" asp-page="Confirmation">
+    <!-- First and Last Name in their own row -->
+    <div class="row mb-3">
+        <div class="col-6">
+            <div class="form-floating">
+                <input asp-for="CancelObject.FirstName" class="form-control" placeholder="First Name">
+                <label asp-for="CancelObject.FirstName">First Name</label>
+                <span asp-validation-for="CancelObject.FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-floating">
+                <input asp-for="CancelObject.LastName" class="form-control" placeholder="Last Name">
+                <label asp-for="CancelObject.LastName">Last Name</label>
+                <span asp-validation-for="CancelObject.LastName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email and Phone Number in their own row -->
+    <div class="row mb-3">
+        <div class="col-6">
+            <div class="form-floating">
+                <input asp-for="CancelObject.Email" class="form-control" placeholder="Email Address">
+                <label asp-for="CancelObject.Email">Email Address</label>
+                <span asp-validation-for="CancelObject.Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-floating">
+                <input asp-for="CancelObject.Phone" class="form-control" placeholder="Phone Number">
+                <label asp-for="CancelObject.Phone">Phone Number</label>
+                <span asp-validation-for="CancelObject.Phone" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Dropdown in its own row -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="form-floating">
+                <select asp-for="CancelObject.ProductName" asp-items="Html.GetEnumSelectList<Product>()" class="form-select" placeholder="Select a Product">
+                    <option value="">Select a Product</option>
+                </select>
+                <label asp-for="CancelObject.ProductName">Select a Product</label>
+                <span asp-validation-for="CancelObject.ProductName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkboxes in their own row -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="form-check">
+                <input asp-for="CancelObject.AgreeToNDA" class="form-check-input">
+                <label asp-for="CancelObject.AgreeToNDA" class="form-check-label">Agree to non-disclosure terms.</label>
+                <span asp-validation-for="CancelObject.AgreeToNDA" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <input asp-for="CancelObject.AgreeToLiability" class="form-check-input">
+                <label asp-for="CancelObject.AgreeToLiability" class="form-check-label">Agree to waive all liability.</label>
+                <span asp-validation-for="CancelObject.AgreeToLiability" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <input asp-for="CancelObject.AgreeToFee" class="form-check-input">
+                <label asp-for="CancelObject.AgreeToFee" class="form-check-label">Agree to early termination fee.</label>
+                <span asp-validation-for="CancelObject.AgreeToFee" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Button in its own row -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit Cancellation Request</button>
+        </div>
+    </div>
+</form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function() {
+            $('form').validate().settings.validClass += ' is-valid';
+            $('form').validate().settings.errorClass += ' is-invalid';
+
+            var defaultRangeValidator = $.validator.methods.range;
+            $.validator.methods.range = function(value, element, param) {
+                if (element.type === 'checkbox') {
+                    return element.checked;
+                } else {
+                    return defaultRangeValidator.call(this, value, element, param);
+                }
+            }
+        });
+    </script>
+}

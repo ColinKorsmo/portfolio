@@ -1,0 +1,38 @@
+@page
+@model homework_5_ColinKorsmo.Pages.ProductsModel
+@{
+    ViewData["Title"] = "Product Catalog";
+    int count = 0;
+}
+
+<h2 class="display-1 text-center">ThoughtTronix Product Catalog</h2>
+<hr>
+<div class="container">
+    <div class="row mb-2 justify-content-center"> 
+    @foreach (var item in Model.Products)
+    {
+        <div class="col-md-auto">
+            <div class="card mb-2" style="width: 24rem;">
+                <img src="@item.ImageURL" class="card-img-top" alt="@item.Name" />
+                <div class="card-body">
+                    <h2 class="card-title">@item.Name</h2>
+                    <p class="card-text">@item.Description</p>
+                    <hr class="my-0" />
+                    <p class="card-text fs-2">
+                        <strong>@item.Price.ToString("C")</strong>
+                        <a asp-page="/BuyNow" asp-route-id="@item.ProductID" class="btn btn-primary float-end my-2">Buy Now</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        count = count + 1; 
+
+        if (count == 2)
+        {
+            @:</div>
+            @:<div class="row mb-2 justify-content-center"> 
+            count = 0;
+        }
+    }
+

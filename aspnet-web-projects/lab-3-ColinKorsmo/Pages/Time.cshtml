@@ -1,0 +1,16 @@
+@page
+@model lab_3_ColinKorsmo.Pages.TimeModel
+@{
+    ViewData["Title"] = "Time";
+}
+<div class="text-center">
+  <h1 class="display-4">@ViewData["Title"]</h1>
+  <p>@Model.Message</p>
+  <h2>Today's Lucky Numbers:</h2>
+  <ul>
+    @foreach (var number in Model.LuckyNumbers)
+    {
+        <li>@number</li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,40 @@
+@page
+@model DetailsModel
+@{
+    ViewData["Title"] = "Patient Details";
+}
+
+<h2>Details</h2>
+
+<div class="container">
+    <h3>Patient</h3>
+    <hr />
+    <table>
+        <tbody>
+            <tr>
+                <th>First Name</th>
+                <td>@Model.Patient.FirstName</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>@Model.Patient.LastName</td>
+            </tr>
+            <tr>
+                <th>Admittance Date</th>
+                <td>@Model.Patient.AdmitDate.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <th>Description of Symptoms</th>
+                <td>@Model.Patient.SymptomDescription</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <a asp-page="./Index">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
