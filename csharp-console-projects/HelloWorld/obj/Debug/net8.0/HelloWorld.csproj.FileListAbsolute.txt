@@ -1,0 +1,14 @@
+/Users/zachcolink/Documents/FALL24/HelloWorld/bin/Debug/net8.0/HelloWorld
+/Users/zachcolink/Documents/FALL24/HelloWorld/bin/Debug/net8.0/HelloWorld.deps.json
+/Users/zachcolink/Documents/FALL24/HelloWorld/bin/Debug/net8.0/HelloWorld.runtimeconfig.json
+/Users/zachcolink/Documents/FALL24/HelloWorld/bin/Debug/net8.0/HelloWorld.dll
+/Users/zachcolink/Documents/FALL24/HelloWorld/bin/Debug/net8.0/HelloWorld.pdb
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/HelloWorld.AssemblyInfoInputs.cache
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/HelloWorld.AssemblyInfo.cs
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/HelloWorld.csproj.CoreCompileInputs.cache
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/HelloWorld.dll
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/refint/HelloWorld.dll
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/HelloWorld.pdb
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/HelloWorld.genruntimeconfig.cache
+/Users/zachcolink/Documents/FALL24/HelloWorld/obj/Debug/net8.0/ref/HelloWorld.dll
